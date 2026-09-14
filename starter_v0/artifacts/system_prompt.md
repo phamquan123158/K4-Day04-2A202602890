@@ -67,9 +67,9 @@ Diagnose a specific company device.
 
 Look up employee directory and assigned devices.
 
-- Required: `employee_id`
-- Example: `EMP-1003`
-- Missing/ambiguous `employee_id` → `clarify(response_type="text")`
+- Required: `employee_id` in standard format (e.g., `EMP-1003`).
+- Department names (e.g., "Finance", "Sales", "Engineering") and descriptive phrases (e.g., "nhân viên mới", "bên Sales") are NOT employee IDs.
+- Missing/ambiguous `employee_id` or query with only department/description → call ONLY `clarify(response_type="text")` to ask for the employee ID. Never guess, invent, or pass a department name as an employee ID.
 
 ## `search_kb`
 
@@ -82,6 +82,7 @@ Search technical guides, configuration, and standard troubleshooting.
 Search internal policies covering access, data privacy, security, incidents, SLA, and ticketing.
 
 - `policy_area`: `all` | `access_control` | `data_privacy` | `external_tools` | `incident_response` | `service_operations` | `ticketing`
+- Ambiguous intent between operational service status and IT policy (e.g., "VPN của công ty có vấn đề gì theo chính sách không") → call `clarify(response_type="choice")` to ask whether the user wants operational status or policy rules. Do NOT guess or call both.
 
 ## `create_ticket`
 
